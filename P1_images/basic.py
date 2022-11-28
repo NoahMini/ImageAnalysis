@@ -114,13 +114,6 @@ if __name__ == '__main__':
     gt_b9 = make_gt(lab_b9)
     gt_b10 = make_gt(lab_b10)
 
-
-
-    # Merge all label images into one and dilate it, gt_t helps to create mask3.jpg
-    gt_t = gt_b1+gt_b2+gt_b3+gt_b4+gt_b5+gt_b6+gt_b7+gt_b8+gt_b9+gt_b10
-    ret, gt_t = cv2.threshold(gt_t, 0.5, 10, cv2.THRESH_BINARY)
-    gt_t = cv2.dilate(gt_t, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9)), iterations=5)
-
     # Get empty beach image and mask
     img_back = cv2.imread('../P1_images/empty_beach.jpg', 0)
     mask = cv2.imread('../P1_images/mask4.jpg', 0)
@@ -140,6 +133,8 @@ if __name__ == '__main__':
         #Apply Sobelx and Sobelxx
         medianx, medianxx = do_sobelx(im_targ)
         im2 = medianx + medianxx
+
+        #Apply thresholding
         mdi = do_thresh(im1)
 
         # Add results of thresholding and sobel
