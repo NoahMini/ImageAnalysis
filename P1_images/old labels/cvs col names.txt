@@ -1,0 +1,10 @@
+.cvs columns
+[label name][x coord][y coord][image name][x size][y size]
+
+labels correctly on heads for:
+	43200
+	46800
+	50400
+
+	72000
+	75600
